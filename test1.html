@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 展示渲染echarts图表 -->
+    <div id="main" style="width: 900px; height: 600px;"></div>
+  </body>
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+  //3.初始化图表
+  var myChart = echarts.init(document.getElementById("main"));
+  //4.指定图表的配置项和数据
+  var option = {
+    title: {
+      //标题
+      text: "某地区蒸发量和降水量",
+      //背景颜色
+      backgroundColor: "#00000",
+      textAligh: "center",
+      //副标题样式
+      textStyle: {
+        color: "#ffff",
+      },
+      left: 500,
+    },
+    tooltip: {
+      //有两个取值  一个是axis 一个是item
+      //item只有放到轴上才显示  如果不设置trigger  默认属性是item
+      trigger: "axis", //axis是指：当我们把鼠标放到所对应的纵轴上，就会显示我们的提示
+    },
+    //指的是图例
+    legend: {
+      data: ["蒸发量", "降水量"],
+      left: "left",
+    },
+    //指的工具箱  图表右边的工具箱 可以切换展示方式
+    toolbox: {
+      //把它显示出来
+      show: true,
+      feature: {
+        mark: {
+          show: true,
+        },
+        //指的是数据视图
+        dataView: {
+          show: true,
+          //指的是内容里面的值是不能修改的
+          readOnly: true,
+        },
+        //切换视图
+        magicType: {
+          //改为true就可以切换
+          show: false,
+          //代表可以切换成折线图 柱状图
+          type: ["line", "bar"],
+        },
+        //刷新
+        restore: {
+          show: true,
+        },
+        //保存数据
+        saveAsImage: {
+          show: true,
+        },
+      },
+    },
+    //实现拖拽 重新混合计算
+    calculable: true,
+    //x轴  指的类别
+    xAxis: [
+      {
+        type: "category",
+        data: [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ],
+      },
+    ],
+    //y轴  指的值
+    yAxis: [
+      {
+        type: "value",
+      },
+    ],
+    //序列  指的两个轴上的内容
+    series: [
+      {
+        name: "蒸发量",
+        //设为柱状图
+        type: "bar",
+        data: [2, 4.9, 7, 23.3, 25.6, 76.7, 135.6, 162.2, 32.6, 6.4, 20, 3.3],
+      },
+      {
+        name: "降水量",
+        type: "bar",
+        data: [2.6, 5.9, 9, 26.4, 28.7, 70.7, 182.2, 48.7, 18.8, 6, 2.3],
+      },
+    ],
+  };
+  //5.将实例化的echarts图表设置图标配置，同时在dom中渲染图表
+  myChart.setOption(option);
+</script>
