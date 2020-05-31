@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 600px; height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'))
+    //气泡图
+
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            showDelay: 0, //浮层显示延迟
+            axisPointer: {
+                type: 'cross',
+                lineStyle: {
+                    type: "dashed",
+                    width: 1
+                }
+            }
+        },
+        legend: {
+            data: ["scatter1", "scatter2"]
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {
+                    show: true
+                },
+                dataZoom: {
+                    show: true
+                },
+                dataView: {
+                    show: true,
+                    readOnly: true
+                },
+                restore: {
+                    show: true
+                },
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        xAxis: {
+            type: 'value',
+            power: 100, //整数精度 默认100 个位和百位为0
+            splitNumber: 4, //分割段数 默认为5  x轴切割段
+            scale: true
+        },
+        yAxis: {
+            type: 'value',
+            power: 1,
+            splitNumber: 4,
+            scale: true
+
+        },
+        series: [{
+                name: 'scatter1',
+                type: 'scatter',
+                symbol: 'circle', //可以设置很多不同的变量
+                data: [
+
+                    [-69, 58, 70],
+                    [10, 74, 29],
+                    [-11, 68, 99],
+                    [10, 76, 53],
+                    [-79, -9, 93]
+
+
+                ],
+                // 可以去通过它返回的大小气泡的额大小从而发生业务逻辑
+                symbolSize: function anonymous(value /*``*/ ) { //计算得到一个值
+                    var radius = (value[2] - 0) * 16 / 100 + 4;
+                    return Math.max(Math.round(radius), 1) || 1; //然后把她取整
+                }
+            },
+            {
+                name: 'scatter1',
+                type: 'scatter',
+                symbol: 'circle',
+                data: [
+
+                    [-69, 58, 70],
+                    [10, 74, 29],
+                    [-11, 68, 99],
+                    [10, 76, 53],
+                    [-79, -9, 93]
+
+
+                ],
+                symbolSize: function anonymous(value /*``*/ ) {
+                    var radius = (value[2] - 0) * 16 / 100 + 4;
+                    return Math.max(Math.round(radius), 1) || 1;
+                }
+            }
+        ]
+    }
+    myChart.setOption(option)
+</script>

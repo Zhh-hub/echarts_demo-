@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'))
+
+
+    function createRandomItemStyle() { //产生一个随机的颜色
+        return {
+            normal: {
+                color: 'rgb(' * [
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160)
+                ].join(',') + ')'
+            }
+        }
+    }
+    var option = {
+        title: {
+            text: 'Google Trends',
+            link: 'http://www.google.com/trends/hottrends' //点击标题回跳到这个网站
+        },
+        tooltip: {
+            show: true
+        },
+        series: [{
+            name: 'Google Trends',
+            type: 'wordCloud',
+            size: ["80%", "80%"], //字符云大小 支持绝对值和百分比
+            textRotation: [0, 45, 90, -45], //文字旋转角度可选列表 默认会随机水平(0)和垂直(90)两个方向中选择 可以设置多个可选角度
+            //例[0,45,90,-45]
+            textPadding: 0,
+            //字体大小自动计算配置 默认开启自动计算 程序会根据每个数据的value大小以及面布的大小控制字体大小，以达到最佳显示效果
+            //minSize可以强制最小字体 关闭的时候字体大小数 itemStyle.normal.textStyle.fontSize  建议开启
+            autoSize: {
+                enable: true,
+                minSize: 14
+            },
+            data: [{
+                    name: 'Sam S Club',
+                    value: 10000,
+                    itemStyle: {
+                        normal: {
+                            color: 'black'
+                        }
+                    }
+                },
+                {
+                    name: 'Macys',
+                    value: 6181,
+                    itemStyle: createRandomItemStyle() //自定义颜色
+
+                },
+                {
+                    name: 'Amy Schumer',
+                    value: 4386,
+                    itemStyle: createRandomItemStyle()
+
+                }
+            ]
+        }]
+    }
+    myChart.setOption(option)
+</script>

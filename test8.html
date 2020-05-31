@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 600px; height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    //雷达图
+    var myChart = echarts.init(document.getElementById('main'))
+
+    var option = {
+        title: {
+            text: '预算vs开销'
+        },
+        tooltip: {
+            trigger: 'item' //只有鼠标指到那个点上才会显示
+        },
+        //图例
+        legend: {
+            orient: 'vertical', //图例垂直方向显示
+            left: 'right', //水平方向居右
+            top: 'bottom', //垂直方向居下
+            data: ["预算分配", "实际开销"]
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {
+                    show: true
+                },
+                dataView: {
+                    show: true,
+                    readOnly: false
+                },
+                restore: {
+                    show: true
+                },
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        polar: [ //极坐标
+            {
+                indicator: [ //雷达指标列表  同时也是label内容
+                    {
+                        text: '销售',
+                        max: 6000,
+                        min: 0
+                    },
+                    {
+                        text: '管理',
+                        max: 16000,
+                        min: 0
+                    },
+                    {
+                        text: '信息技术',
+                        max: 30000,
+                        min: 0
+                    },
+                    {
+                        text: '客服',
+                        max: 38000,
+                        min: 0
+                    },
+                    {
+                        text: '研发',
+                        max: 52000,
+                        min: 0
+                    }
+                ]
+            }
+        ],
+        calculable: true,
+        series: [{
+                name: '',
+                type: 'radar',
+                data: [{
+                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                    name: '预算分配'
+                }]
+            },
+            {
+                name: "",
+                type: 'radar',
+                data: [{
+                    value: [5000, 14000, 28000, 31000, 42000, 21000],
+                    name: '实际开销'
+                }]
+            }
+        ]
+
+    }
+    myChart.setOption(option)
+</script>

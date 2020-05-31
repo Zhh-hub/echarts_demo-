@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width:600px;height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'))
+
+    //指定图标的配置项和数据
+    var option = {
+        title: {
+            text: '某站点用户访问来源',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item', //触发类型，默认数据触发 可选为  item  |  axis
+            formatter: "{a} <br/>{b}:{c}次 ({d}%)" //a(系列名称) b(数据项名称) c(数值 代表的就是value) d(饼图：百分比)|雷达图：指标名称
+        },
+        legend: {
+            orient: "vertical", //布局方式 默认为水平布局 可选为：horizontal | vertical,
+            left: 'left',
+            data: ["直接访问", "邮件营销", "联盟广告", "视频广告"],
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {
+                    show: true
+                },
+                dataView: {
+                    show: true,
+                    readOnly: true
+                },
+                restore: {
+                    show: true
+                },
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        calculable: true,
+        series: [{
+            name: '访问来源',
+            type: 'pie',
+            //半径，支持绝对值 (px)和百分比 百分比计算：min(width,height)/2*75%  传数组实现环形图 [内半径，外半径]
+            radius: '50%',
+            center: ["50%", "60%"], //圆心坐标 支持绝对值(px) 和百分比 百分比计算min(width,height)*50%
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true,
+                        formatter: "{b}: {c} ({d}%)"
+                    }
+                }
+            },
+            data: [{
+                    //数值
+                    value: 335,
+                    name: '直接访问'
+                },
+                {
+                    value: 310,
+                    name: '邮件营销'
+                },
+                {
+                    value: '234',
+                    name: '联盟广告'
+                },
+                {
+                    value: 135,
+                    name: '视频广告'
+                },
+
+            ]
+        }]
+    }
+    myChart.setOption(option)
+</script>

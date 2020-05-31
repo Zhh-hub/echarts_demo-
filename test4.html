@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width:600px;height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'))
+
+    //环形饼图
+
+    var option = {
+        tooltip: {
+            trigger: "item",
+            formatter: "{a} <br /> {b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: "vertical",
+            data: ["考点专练", "套卷练习", "仿真模考"],
+            left: 25
+        },
+        series: [{
+            name: "访问来源",
+            type: "pie",
+            radius: ["40%", "80%"], //内外半径
+            avoidLabelOverlap: false, //是否启用防止标签重叠策略 默认开启 在标签拥挤重叠的情况下会挪动各个标签的位置 防止标签间重叠
+            //如果不需要开启该策略，例如圆环圈这个例子中需要强制所有标签放在中心位置 可以该值设为false
+            label: { //label指的是序列标签
+                show: false,
+                position: "center"
+            },
+            emphasis: { //每一项标签的配置
+                label: {
+                    show: true,
+                    fontSize: "26",
+                    fontWeight: "bold",
+                    color: "orange"
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [{
+                    value: 460,
+                    name: "考点专练"
+                },
+                {
+                    value: 530,
+                    name: "套卷练习"
+                },
+                {
+                    value: 430,
+                    name: "仿真模考"
+                }
+            ]
+        }]
+    }
+    myChart.setOption(option)
+</script>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script src="js/china.js"></script>
+<script>
+    //地图
+    var myChart = echarts.init(document.getElementById('main'))
+
+    var option = {
+        title: {
+            text: '手机销量',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical', //垂直方向
+            left: 'left',
+            data: ["iphone3", "iphone4", "iphone11"]
+        },
+        dataRange: {
+            min: 0,
+            max: 2500,
+            left: 'left',
+            top: 'bottom',
+            text: ["高", "低"],
+            calculable: true
+        },
+        series: [{
+                name: "iphone3",
+                type: 'map',
+                mapType: 'china', //地图类型 支持word china及全国34个省市自治区，省市自治区的mapType直接使用简体中文 如，上海 北京
+                roam: false, //是否开启滚轮缩放和拖拽漫游，默认false 其他有效输入为‘true 'scale'开启滚轮缩放  ’move仅开启拖拽漫游
+                mapValueCalculation: 'sum', //地图数值计算方式 默认为加和 可选sum(总数)|average(均值)
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    }
+                },
+                data: [{
+                        name: '北京',
+                        value: 234
+                    },
+                    {
+                        name: '天津',
+                        value: 332
+                    },
+                    {
+                        name: '上海',
+                        value: 332
+                    },
+                    {
+                        name: '香港',
+                        value: 332
+                    },
+                    {
+                        name: '内蒙古',
+                        value: 332
+                    },
+                    {
+                        name: '澳门',
+                        value: 332
+                    },
+                    {
+                        name: '海南',
+                        value: 332
+                    }
+                ]
+            },
+            {
+                name: "iphone4",
+                type: 'map',
+                mapType: 'china', //地图类型 支持word china及全国34个省市自治区，省市自治区的mapType直接使用简体中文 如，上海 北京
+                roam: false, //是否开启滚轮缩放和拖拽漫游，默认false 其他有效输入为‘true 'scale'开启滚轮缩放 ’move仅开启拖拽漫游
+                mapValueCalculation: 'sum', //地图数值计算方式 默认为加和 可选sum(总数)|average(均值)
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    }
+                },
+                data: [{
+                        name: '北京',
+                        value: 234
+                    },
+                    {
+                        name: '天津',
+                        value: 332
+                    },
+                    {
+                        name: '上海',
+                        value: 332
+                    },
+                    {
+                        name: '香港',
+                        value: 332
+                    },
+                    {
+                        name: '内蒙古',
+                        value: 332
+                    },
+                    {
+                        name: '澳门',
+                        value: 332
+                    },
+                    {
+                        name: '海南',
+                        value: 332
+                    }
+                ]
+            },
+            {
+                name: "iphone11",
+                type: 'map',
+                mapType: 'china', //地图类型 支持word china及全国34个省市自治区，省市自治区的mapType直接使用简体中文 如，上海 北京
+                roam: false, //是否开启滚轮缩放和拖拽漫游，默认false 其他有效输入为‘true 'scale'开启滚轮缩放 ’move仅开启拖拽漫游
+                mapValueCalculation: 'sum', //地图数值计算方式 默认为加和 可选sum(总数)|average(均值)
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    }
+                },
+                data: [{
+                        name: '北京',
+                        value: 234
+                    },
+                    {
+                        name: '天津',
+                        value: 332
+                    },
+                    {
+                        name: '上海',
+                        value: 332
+                    },
+                    {
+                        name: '香港',
+                        value: 332
+                    },
+                    {
+                        name: '内蒙古',
+                        value: 332
+                    },
+                    {
+                        name: '澳门',
+                        value: 332
+                    },
+                    {
+                        name: '海南',
+                        value: 332
+                    },
+                    {
+                        name: '河北',
+                        value: 332
+                    },
+                    {
+                        name: '河南',
+                        value: 332
+                    }
+                ]
+            }
+        ]
+    }
+    myChart.setOption(option)
+</script>

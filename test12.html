@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 600px; height: 600px;"> </div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'))
+
+    //仪表盘
+    var option = {
+        title: {
+            text: '工作完成率',
+            left: 'center'
+        },
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%" //a 系列名称  b数据名称 c数值
+        },
+        series: [{
+            name: '业务指标',
+            type: 'gauge',
+            //明细
+            detail: {
+                formatter: '{value}%'
+            },
+            data: [{
+                value: 50,
+                name: '完成率'
+            }]
+        }]
+    }
+    myChart.setOption(option)
+</script>

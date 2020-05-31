@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height: 600px;"></div>
+</body>
+
+</html>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'))
+
+    //漏斗图
+    var option = {
+        title: {
+            text: '漏斗图  某站点用户访问来源',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            top: 'center',
+            data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"]
+        },
+        series: [{
+                name: '访问来源',
+                type: 'funnel',
+                x: "30%", //左上角横坐标  50%显示区域纵向中心
+                x2: '15%', //右下角横坐标
+                y2: '10%', //右下角纵坐标
+                max: 100, //最大值
+                itemStyle: {
+                    normal: {
+                        labelLine: {
+                            show: true
+                        }
+                    },
+                    emphasis: {
+                        labelLine: {
+                            show: false
+                        }
+                    }
+                },
+                data: [{
+                        value: 80,
+                        name: '直接访问'
+                    },
+                    {
+                        value: 60,
+                        name: '邮件营销'
+                    }, {
+                        value: '40',
+                        name: '联盟广告'
+                    },
+                    {
+                        value: 20,
+                        name: '视频广告'
+                    },
+                    {
+                        value: 100,
+                        name: '搜索引擎'
+                    }
+                ]
+
+            }
+
+        ]
+    }
+    myChart.setOption(option)
+</script>
